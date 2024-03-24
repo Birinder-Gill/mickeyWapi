@@ -10,6 +10,7 @@ class WapiController extends Controller
 {
     function onMessageCreate(Request $request)
     {
+
         $data = request()->json()->all()['data']['message']['_data'];
         $message = $data['body'];
         $personName = $data['notifyName'];
