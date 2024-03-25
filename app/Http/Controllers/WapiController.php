@@ -3,11 +3,21 @@
 namespace App\Http\Controllers;
 
 use App\Models\WapiMessage;
+use App\Services\WhatsAppApiService;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class WapiController extends Controller
 {
+
+    protected WhatsAppApiService $apiService;
+
+
+    public function __construct(WhatsAppApiService $apiService)
+    {
+        $this->apiService = $apiService;
+    }
+
     function onMessageCreate(Request $request)
     {
 
@@ -31,6 +41,11 @@ class WapiController extends Controller
         ];
         WapiMessage::create($logArray);
 
+    }
+
+    function sendMessage(Request $request) {
+        $message = $request->message??"Nope";
+        $this->apiService->sendWhatsAppMessage('919524000096@c.us', $message);
     }
     function test(Request $request) {
         dd($request);

@@ -10,4 +10,6 @@ Route::get('/user', function (Request $request) {
 
 Route::post('/onMessageCreate', [WapiController::class, 'onMessageCreate']);
 Route::get('/test', [WapiController::class, 'test']);
+Route::get('/sendMessage', [WapiController::class, 'sendMessage']);
+
 

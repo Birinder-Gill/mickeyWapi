@@ -19,7 +19,7 @@ return new class extends Migration
             $table->integer("counter");
             $table->boolean("fromMe")->default(false);
             $table->string("type");
-            $table->string("messageText");
+            $table->text("messageText");
             $table->string("messageId");
             $table->string("messageHash");
 
