@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->text('message');
             $table->string('type');
+
             $table->string('from');
             $table->boolean('fromMe')->default(false);
             $table->boolean('hasMedia')->default(false);
