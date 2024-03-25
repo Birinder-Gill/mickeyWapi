@@ -29,7 +29,7 @@ class DetectDeleteMiddleware
     {
         $req = request()->json()->all();
         if ($req['event'] === 'message_revoke_everyone') {
-            $data = $req['before'];
+            $data = $req['data']['before'];
             $message = $data['body'];
             $type = $data['type'];
             $from = $data['from'];
