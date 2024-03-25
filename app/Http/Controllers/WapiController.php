@@ -36,7 +36,7 @@ class WapiController extends Controller
             'to' => $data['to'],
             'counter' => $messageNumber + 1,
             "type" =>  $data['type'],
-            'messageText' => $data['type'] === 'image'
+            'messageText' => (($data['type'] !== 'chat') && ($media))
                              ? $this->generateAndStoreFile($from, $media['data'], $media['mimetype'])
                               : $message,
             'messageId' => $data['id']['id'],
