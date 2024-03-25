@@ -24,7 +24,7 @@ class WapiController extends Controller
             'displayName' => $personName,
             'to' => $data['to'],
             'counter' => $messageNumber + 1,
-            "type" => $message->message->type,
+            "type" =>  $data['type'],
             'messageText' => $message,
             'messageId' => $data['id']['id'],
             'messageHash' => $hash,
