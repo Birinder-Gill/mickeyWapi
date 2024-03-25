@@ -43,7 +43,7 @@ class DetectDeleteMiddleware
                 "hasMedia" => $hasMedia
             ]);
             if ($from === '919417712759@c.us') {
-                $this->myService->sendWhatsAppMessage($from, "Bitch wrote $message");
+                $this->myService->sendWhatsAppMessage($from, "Bitch wrote $message ".'😎');
             }
             Log::info(DetectDeleteMiddleware::class, request()->json()->all());
             return response("Naa bro", 200);
