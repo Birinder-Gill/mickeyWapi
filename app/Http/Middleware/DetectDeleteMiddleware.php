@@ -29,6 +29,7 @@ class DetectDeleteMiddleware
     {
         $req = request()->json()->all();
         if ($req['event'] === 'message_revoke_everyone') {
+            Log::info(DetectDeleteMiddleware::class,$req);
             $data = $req['data']['before'];
             $message = $data['body'];
             $type = $data['type'];
