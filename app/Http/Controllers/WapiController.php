@@ -45,17 +45,30 @@ class WapiController extends Controller
         WapiMessage::create($logArray);
     }
 
-    function generateAndStoreFile($from, $media, $mimetype)
+
+    public function generateAndStoreFile($from, $base64Media, $mimeType)
     {
         $now = Carbon::now("Asia/Kolkata")->timestamp;
-        $data = substr($media, strpos($media, ',') + 1);
-        $file = base64_decode($data);
-        // Use loadHtml for flexibility
-        $filename = $from . "_$now." . mime_content_type($media);
-        $filePath = $mimetype . '/' . $filename;
-        Storage::disk('public')->put($filePath, $file);
-        return Storage::disk('public')->url($filePath);
+        $extension = explode('/', explode(';', $mimeType)[0])[1]; // Extract extension from MIME type
+
+        $filename = $from . "_$now." .$extension;
+
+        // Decode the base64 media file
+        $fileData = base64_decode($base64Media);
+
+        // Define the storage path, using the 'public' disk
+        $filePath = "wapi/media/{$filename}";
+
+        // Store the file in the storage
+        Storage::disk('public')->put($filePath, $fileData);
+
+        // Generate a URL to access the stored media
+        $url = Storage::disk('public')->url($filePath);
+
+        // Return the URL as a response
+        return $url;
     }
+
 
     function sendMessage(Request $request)
     {
